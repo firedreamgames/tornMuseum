@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="https://cdn.glitch.global/7f3829a7-39a0-41f1-97a1-90339220b71a/tornbanner.png?v=1717917797773" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{seo.title}}</title>
+    <link rel="stylesheet" href="/style.css" />
+    <style>
+        .welcome {
+            font-size: 14px;
+            color: black;
+            margin-left: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+
+        th, td {
+            border: 1px solid black;
+            padding: 4px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .main-container {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+        }
+
+        .sidebar-left, .sidebar-right {
+            width: 20%;
+            background-color: #f8f8f8;
+            padding: 10px;
+        }
+
+        .sidebar {
+            max-height: 100vh;
+            overflow-y: auto;
+            width: 60%;
+            padding: 10px;
+        }
+
+        .table-container {
+            margin-bottom: 20px;
+        }
+
+        .tables-wrapper {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .tables-wrapper .table-container {
+            width: 48%;
+            box-sizing: border-box;
+        }
+
+        @media (max-width: 768px) {
+            .main-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sidebar-left, .sidebar-right {
+                display: none;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+
+            .tables-wrapper .table-container {
+                width: 100%;
+            }
+
+            footer {
+                display: none;
+            }
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            background-color: #d3d3d3;
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="header-left">
+            <img src="https://cdn.glitch.global/7f3829a7-39a0-41f1-97a1-90339220b71a/tornbanner.png?v=1717917797773" class="logo" alt="Torn logo" />
+            <h1 class="title">
+                Museum Profit Calculator
+                {{#if user}}
+                    <span class="welcome">Welcome, {{user.name}}</span>
+                {{/if}}
+            </h1>
+        </div>
+        <div class="header-right">
+            <a href="#" id="login-link">Login</a>
+            <a href="#" id="update-link" style="display: none;">Update</a>
+        </div>
+    </div>
+    <div class="main-container">
+        <div class="sidebar-left"></div>
+        <div class="sidebar">
+            <div class="table-container">
+                <h3>CURRENT POINT PRICE</h3>
+                <table>
+                    <tr>
+                        <th>Point Price</th>
+                        <th id="point-price">...................</th>
+                    </tr>
+                </table>
+            </div>
+            <div class="tables-wrapper">
+                <div class="table-container">
+                    <h3>PLUSHIES</h3>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Current Price</th>
+                        </tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Sheep+Plushie" target="_blank">Sheep</a></td><td id="price-sheep"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Teddy+Bear+Plushie" target="_blank">Teddy Bear</a></td><td id="price-teddy-bear"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Kitten+Plushie" target="_blank">Kitten</a></td><td id="price-kitten"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Jaguar+Plushie" target="_blank">Jaguar</a></td><td id="price-jaguar"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Wolverine+Plushie" target="_blank">Wolverine</a></td><td id="price-wolverine"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Nessie+Plushie" target="_blank">Nessie</a></td><td id="price-nessie"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Red+Fox+Plushie" target="_blank">Red Fox</a></td><td id="price-red-fox"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Monkey+Plushie" target="_blank">Monkey</a></td><td id="price-monkey"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Chamois+Plushie" target="_blank">Chamois</a></td><td id="price-chamois"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Panda+Plushie" target="_blank">Panda</a></td><td id="price-panda"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Lion+Plushie" target="_blank">Lion</a></td><td id="price-lion"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Camel+Plushie" target="_blank">Camel</a></td><td id="price-camel"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Stingray+Plushie" target="_blank">Stingray</a></td><td id="price-stingray"></td></tr>
+                        <tr><td>Convert to Point</td><td id="convert-point-plushies" colspan="2"></td></tr>
+                        <tr><td>%Profit</td><td id="profit-plushies" colspan="2"></td></tr>
+                    </table>
+                </div>
+                <div class="table-container">
+                    <h3>FLOWERS</h3>
+                    <table>
+                        <tr>
+                            <th>Item</th>
+                            <th>Current Price</th>
+                        </tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Dahlia" target="_blank">Dahlia</a></td><td id="price-dahlia"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Orchid" target="_blank">Orchid</a></td><td id="price-orchid"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=African+Violet" target="_blank">African Violet</a></td><td id="price-african-violet"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Cherry+Blossom" target="_blank">Cherry Blossom</a></td><td id="price-cherry-blossom"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Peony" target="_blank">Peony</a></td><td id="price-peony"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Ceibo+Flower" target="_blank">Ceibo Flower</a></td><td id="price-ceibo-flower"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Edelweiss" target="_blank">Edelweiss</a></td><td id="price-edelweiss"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Crocus" target="_blank">Crocus</a></td><td id="price-crocus"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Heather" target="_blank">Heather</a></td><td id="price-heather"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Tribulus+Omanense" target="_blank">Tribulus Omanense</a></td><td id="price-tribulus-omanense"></td></tr>
+                        <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Banana+Orchid" target="_blank">Banana Orchid</a></td><td id="price-banana-orchid"></td></tr>
+                        <tr><td>Convert to Point</td><td id="convert-point-flowers" colspan="2"></td></tr>
+                        <tr><td>%Profit</td><td id="profit-flowers" colspan="2"></td></tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar-right"></div>
+    </div>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Enter API Key</h2>
+            <input type="text" id="api-key-input" placeholder="API Key" />
+            <button id="save-api-key">Enter</button>
+        </div>
+    </div>
+    <div id="response-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>API Response</h2>
+            <pre id="api-response"></pre>
+        </div>
+    </div>
+    <script>
+        const loginModal = document.getElementById('login-modal');
+        const responseModal = document.getElementById('response-modal');
+        const loginLink = document.getElementById('login-link');
+        const updateLink = document.getElementById('update-link');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        loginLink.addEventListener('click', () => {
+            loginModal.style.display = 'block';
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                loginModal.style.display = 'none';
+                responseModal.style.display = 'none';
+            });
+        });
+
+        window.addEventListener('click', event => {
+            if (event.target === loginModal) {
+                loginModal.style.display = 'none';
+            }
+            if (event.target === responseModal) {
+                responseModal.style.display = 'none';
+            }
+        });
+
+        document.getElementById('save-api-key').addEventListener('click', () => {
+            const apiKey = document.getElementById('api-key-input').value;
+            validateApiKey(apiKey);
+        });
+
+        document.getElementById('update-link').addEventListener('click', () => {
+            const apiKey = document.getElementById('api-key-input').value;
+            fetchAndUpdatePrices(apiKey);
+        });
+
+        function validateApiKey(apiKey) {
+            fetch('/validate-api-key', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ apiKey })
+            }).then(response => response.json())
+              .then(data => {
+                if (data.success) {
+                    loginModal.style.display = 'none';
+                    const titleElement = document.querySelector('.title');
+                    const welcomeText = document.createElement('span');
+                    welcomeText.className = 'welcome';
+                    welcomeText.innerText = ` Welcome, ${data.user.name}`;
+                    titleElement.appendChild(welcomeText);
+                    document.getElementById('login-link').style.display = 'none';
+                    document.getElementById('update-link').style.display = 'block';
+                    
+                    fetchAndUpdatePrices(apiKey);
+                } else {
+                    alert(`Failed to validate API key: ${data.error}`);
+                }
+              }).catch(error => {
+                alert(`Failed to validate API key: ${error}`);
+            });
+        }
+
+        function fetchAndUpdatePrices(apiKey) {
+            // Fetch and update the point price
+            fetch(`https://api.torn.com/market/?selections=pointsmarket&key=${apiKey}`)
+                .then(response => response.json())
+                .then(pointsData => {
+                    let pts = Object.values(pointsData.pointsmarket).reduce((prev, curr) => {
+                        return prev.cost < curr.cost ? prev : curr;
+                    });
+                    let pointPrice = pts.cost;
+                    document.getElementById('point-price').innerText = pointPrice.toLocaleString();
+
+                    // Items to fetch prices for
+                    const items = [
+                        { code: 258, id: 'price-jaguar' },
+                        { code: 186, id: 'price-sheep' },
+                        { code: 187, id: 'price-teddy-bear' },
+                                                { code: 215, id: 'price-kitten' },
+                        { code: 618, id: 'price-stingray' },
+                        { code: 261, id: 'price-wolverine' },
+                        { code: 274, id: 'price-panda' },
+                        { code: 281, id: 'price-lion' },
+                        { code: 384, id: 'price-camel' },
+                        { code: 266, id: 'price-nessie' },
+                        { code: 268, id: 'price-red-fox' },
+                        { code: 269, id: 'price-monkey' },
+                        { code: 273, id: 'price-chamois' },
+                        { code: 385, id: 'price-tribulus-omanense' },
+                        { code: 276, id: 'price-peony' },
+                        { code: 277, id: 'price-cherry-blossom' },
+                        { code: 282, id: 'price-african-violet' },
+                        { code: 260, id: 'price-dahlia' },
+                        { code: 263, id: 'price-crocus' },
+                        { code: 267, id: 'price-heather' },
+                        { code: 264, id: 'price-orchid' },
+                        { code: 271, id: 'price-ceibo-flower' },
+                        { code: 272, id: 'price-edelweiss' },
+                        { code: 617, id: 'price-banana-orchid' }
+                    ];
+
+                    // Fetch and update the prices for each item
+                    const pricePromises = items.map(item => {
+                        return fetch(`https://api.torn.com/market/${item.code}?selections=bazaar&key=${apiKey}`)
+                            .then(response => response.json())
+                            .then(data => {
+                                const price = data.bazaar[0].cost;
+                                document.getElementById(item.id).innerText = price.toLocaleString();
+                                return price;
+                            });
+                    });
+
+                    // After fetching all prices, calculate and update convert to point prices and profits
+                    Promise.all(pricePromises).then(prices => {
+                        const plushiePrices = prices.slice(0, 13); // First 13 items are plushies
+                        const flowerPrices = prices.slice(13); // The rest are flowers
+
+                        const convertPointPlushies = parseInt(plushiePrices.reduce((a, b) => a + b, 0) / 10);
+                        const convertPointFlowers = parseInt(flowerPrices.reduce((a, b) => a + b, 0) / 10);
+                      
+                        const profitPlushies = ((pointPrice / convertPointPlushies) - 1) * 100;
+                        const profitFlowers = ((pointPrice  / convertPointFlowers) - 1) * 100;
+
+                        document.getElementById('convert-point-plushies').innerText = convertPointPlushies.toLocaleString();
+                        document.getElementById('convert-point-flowers').innerText = convertPointFlowers.toLocaleString();
+                        document.getElementById('profit-plushies').innerText = profitPlushies.toFixed(2) + '%';
+                        document.getElementById('profit-flowers').innerText = profitFlowers.toFixed(2) + '%';
+                    });
+                });
+        }
+    </script>
+    <footer>
+        Torn Museum Profit Calculator v1.0 2024 by H2O
+    </footer>
+</body>
+</html>
