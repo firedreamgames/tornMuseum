@@ -123,6 +123,7 @@
                     <tr>
                         <th>Point Price</th>
                         <th id="point-price">...................</th>
+                        <th>Custom:<input id="custom-point-price" type="number" min="0"></th>
                     </tr>
                 </table>
             </div>
@@ -149,6 +150,7 @@
                         <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Stingray+Plushie" target="_blank">Stingray</a></td><td id="price-stingray"></td></tr>
                         <tr><td>Convert to Point</td><td id="convert-point-plushies" colspan="2"></td></tr>
                         <tr><td>%Profit</td><td id="profit-plushies" colspan="2"></td></tr>
+                        <tr><td>%Profit (Custom)</td><td id="custom-profit-plushies" colspan="2"></td></tr>
                     </table>
                 </div>
                 <div class="table-container">
@@ -171,6 +173,7 @@
                         <tr><td><a href="https://www.torn.com/imarket.php#/p=shop&step=shop&type=&searchname=Banana+Orchid" target="_blank">Banana Orchid</a></td><td id="price-banana-orchid"></td></tr>
                         <tr><td>Convert to Point</td><td id="convert-point-flowers" colspan="2"></td></tr>
                         <tr><td>%Profit</td><td id="profit-flowers" colspan="2"></td></tr>
+                        <tr><td>%Profit (Custom)</td><td id="custom-profit-flowers" colspan="2"></td></tr>
                     </table>
                 </div>
             </div>
@@ -266,6 +269,8 @@
                         return prev.cost < curr.cost ? prev : curr;
                     });
                     let pointPrice = pts.cost;
+                    let customPointsPrice = document.getElementById("custom-point-price").value;
+                    customPointsPrice = customPointsPrice ? customPointsPrice : pointPrice;
                     document.getElementById('point-price').innerText = pointPrice.toLocaleString();
 
                     // Items to fetch prices for
@@ -273,7 +278,7 @@
                         { code: 258, id: 'price-jaguar' },
                         { code: 186, id: 'price-sheep' },
                         { code: 187, id: 'price-teddy-bear' },
-                                                { code: 215, id: 'price-kitten' },
+                        { code: 215, id: 'price-kitten' },
                         { code: 618, id: 'price-stingray' },
                         { code: 261, id: 'price-wolverine' },
                         { code: 274, id: 'price-panda' },
@@ -317,11 +322,15 @@
                       
                         const profitPlushies = ((pointPrice / convertPointPlushies) - 1) * 100;
                         const profitFlowers = ((pointPrice  / convertPointFlowers) - 1) * 100;
+                        const customProfitPlushies = ((customPointPrice / convertPointPlushies) - 1) * 100;
+                        const customProfitFlowers = ((customPointPrice  / convertPointFlowers) - 1) * 100;
 
                         document.getElementById('convert-point-plushies').innerText = convertPointPlushies.toLocaleString();
                         document.getElementById('convert-point-flowers').innerText = convertPointFlowers.toLocaleString();
                         document.getElementById('profit-plushies').innerText = profitPlushies.toFixed(2) + '%';
                         document.getElementById('profit-flowers').innerText = profitFlowers.toFixed(2) + '%';
+                        document.getElementById('custom-profit-plushies').innerText = customProfitPlushies.toFixed(2) + '%';
+                        document.getElementById('custom-profit-flowers').innerText = customProfitFlowers.toFixed(2) + '%';
                     });
                 });
         }
